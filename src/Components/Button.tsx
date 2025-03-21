@@ -1,9 +1,17 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import '../App.css'
 import { useEffect } from 'react'
-export default function Button(props) {
+
+interface ButtonProps {
+    onClick: () => void;
+    buttonName: string;
+    limit?: number
+}
+function Button(props: ButtonProps) {
     const [buttonCounter, setButtonCounter] = useState(0)
-    const [natalakay, setTalakay] = useState("sumanth")
+    // @ts-ignore
+    const [natalakay, setTalakay] = useState<string>("sumanth")
+    // @ts-ignore
     const [myObject, setMyObject] = useState({ name: "sumanth", age: 22 })
 
     const handleMyButton = () => {
@@ -32,3 +40,4 @@ export default function Button(props) {
         <div className='btn' onClick={handleMyButton}>{props.buttonName}</div>
     )
 }
+export default Button

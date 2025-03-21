@@ -12,6 +12,8 @@ function App() {
   const myref1 = useRef(null);
   const [showButton, setButtonVal] = useState(0)
   const [myData, setMayData] = useState([])
+  const [inputState, setInputState] = useState(2)
+
   const itemRefs = useRef([])
   const handleButton = () => {
     setButtonVal(1)
@@ -29,12 +31,17 @@ function App() {
     myref.current.style.background = "red"
   }, [])
   const dataToPass = { name: 'GeeksforGeeks', age: 20 };
-
+  const handleinput = () => {
+    setInputState(32)
+  }
   return (
     <>
       <div className='container'>
         <Link to='/span' state={dataToPass}>Span page</Link>
+        <Link to='/span' state={dataToPass}>Span page</Link>
         <input type="text" ref={myref} />
+
+
         <Button rededed={myref}></Button>
 
         <ul>
