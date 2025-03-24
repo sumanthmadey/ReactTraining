@@ -9,16 +9,11 @@ import SpanComp from './Components/SpanComp.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-
     <BrowserRouter>
       <Routes>
         <Route path="/btn" element={< Button buttonName="sumanth" />}>  </Route>
         <Route path="/" element={< App />}> </Route>
         <Route path="/span" element={< SpanComp />}> </Route>
-
-
-
-
 
       </Routes>
     </BrowserRouter>

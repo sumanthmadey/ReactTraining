@@ -6,6 +6,8 @@ import Button from './Components/Button'
 import { useEffect } from 'react'
 
 import { Outlet, Link } from "react-router-dom";
+import ThemeContext from './MyTheme'
+import Component1 from './Components/Component1'
 
 function App() {
   const myref = useRef(null);
@@ -13,6 +15,11 @@ function App() {
   const [showButton, setButtonVal] = useState(0)
   const [myData, setMayData] = useState([])
   const [inputState, setInputState] = useState(2)
+  const [theme, setTheme] = useState('light');
+
+  const toggleTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light');
+  };
 
   const itemRefs = useRef([])
   const handleButton = () => {
@@ -21,14 +28,14 @@ function App() {
 
   }
   useEffect(() => {
-    axios.get("https://63ad66e5da81ba97619bb4af.mockapi.io/user").then((res) => {
-      setMayData(res.data)
-    });
+    // axios.get("https://63ad66e5da81ba97619bb4af.mockapi.io/user").then((res) => {
+    //   setMayData(res.data)
+    // });
 
-    myref.current.focus();
-    myref.current.value = "loading"
+    // myref.current.focus();
+    // myref.current.value = "loading"
 
-    myref.current.style.background = "red"
+    // myref.current.style.background = "red"
   }, [])
   const dataToPass = { name: 'GeeksforGeeks', age: 20 };
   const handleinput = () => {
@@ -36,26 +43,31 @@ function App() {
   }
   return (
     <>
-      <div className='container'>
-        <Link to='/span' state={dataToPass}>Span page</Link>
-        <Link to='/span' state={dataToPass}>Span page</Link>
-        <input type="text" ref={myref} />
+      <ThemeContext.Provider value={{ theme, toggleTheme }}>
+        <Component1 />
+        {/* 
+        <div className='container'>
+          <Link to='/span' state={dataToPass}>Span page</Link>
+          <Link to='/span' state={dataToPass}>Span page</Link>
+          <input type="text" ref={myref} />
 
 
-        <Button rededed={myref}></Button>
 
-        <ul>
-          {myData && myData.map((itemlist, index) => {
-            return (<li key={itemlist.id} ref={(el) => itemRefs.current[index] = el}>
-              <Button controller={itemRefs.current[index]} > {itemlist.name}</Button>
-            </li>)
-          })}</ul>
-        <div onClick={handleButton}>Click Here to Clean up</div>
-        {showButton == 0 && (<><Button buttonName="Button A" limit="5" />
-          <Button buttonName="Button B" />
-          <Button buttonName="Button C" />
-        </>)}
-      </div >
+          <Button rededed={myref}></Button>
+
+          <ul>
+            {myData && myData.map((itemlist, index) => {
+              return (<li key={itemlist.id} ref={(el) => itemRefs.current[index] = el}>
+                <Button controller={itemRefs.current[index]} > {itemlist.name}</Button>
+              </li>)
+            })}</ul>
+          <div onClick={handleButton}>Click Here to Clean up</div>
+          {showButton == 0 && (<><Button buttonName="Button A" limit="5" />
+            <Button buttonName="Button B" />
+            <Button buttonName="Button C" />
+          </>)}
+        </div > */}
+      </ThemeContext.Provider>
     </>
   )
 }
