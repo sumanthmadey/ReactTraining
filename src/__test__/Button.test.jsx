@@ -1,6 +1,5 @@
-// src/__tests__/Button.test.tsx
-import { render, screen } from '@testing-library/react';
 import Button from '@/Components/Button';
+const { render, screen } = require('@testing-library/react');
 
 describe('Button Component', () => {
     it('should render the button with the correct label', () => {
@@ -8,6 +7,7 @@ describe('Button Component', () => {
         const buttonElement = screen.getByText('Click me');
         expect(buttonElement).toBeInTheDocument();
     });
+
 
 
 });

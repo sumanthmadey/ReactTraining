@@ -8,7 +8,9 @@ import { useEffect } from 'react'
 import { Outlet, Link } from "react-router-dom";
 import ThemeContext from './MyTheme'
 import Component1 from './Components/Component1'
-
+import { Provider } from 'react-redux'
+import store from './store'
+import BankApp from './Components/BankApp'
 function App() {
   const myref = useRef(null);
   const myref1 = useRef(null);
@@ -43,9 +45,13 @@ function App() {
   }
   return (
     <>
-      <ThemeContext.Provider value={{ theme, toggleTheme }}>
+
+      <Provider store={store}>
+        <BankApp />
+      </Provider>
+      {/* <ThemeContext.Provider value={{ theme, toggleTheme }}>
         <Component1 />
-        {/* 
+        
         <div className='container'>
           <Link to='/span' state={dataToPass}>Span page</Link>
           <Link to='/span' state={dataToPass}>Span page</Link>
@@ -66,8 +72,8 @@ function App() {
             <Button buttonName="Button B" />
             <Button buttonName="Button C" />
           </>)}
-        </div > */}
-      </ThemeContext.Provider>
+        </div >
+      </ThemeContext.Provider> */}
     </>
   )
 }
